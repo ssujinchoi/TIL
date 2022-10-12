@@ -47,7 +47,7 @@ function User(name, age, birthday){
     this.age = age
     this.birthday = birthday
     // 4. this를 반환 - 실제 코드는 아님
-  	return this
+    return this
 }
 
 new 함수명(); // 1. 실행하면
