@@ -40,13 +40,13 @@ let user2 = new User('Sony', 23, '20-10-11')
 
 ```javascript
 function User(name, age, birthday){
-   	// 2. 빈 객체를 만들고 this에 할당 - 실제 코드는 아님
+    // 2. 빈 객체를 만들고 this에 할당 - 실제 코드는 아님
     this = {}
-  	// 3. this에 프로퍼티들을 추가
+    // 3. this에 프로퍼티들을 추가
     this.name = name
     this.age = age
     this.birthday = birthday
-  	// 4. this를 반환 - 실제 코드는 아님
+    // 4. this를 반환 - 실제 코드는 아님
   	return this
 }
 
