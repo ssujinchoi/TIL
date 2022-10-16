@@ -135,8 +135,101 @@ m.entries()
 
 <br><br>
 
+## Set
 
+- 집합, 합집합, 교집합, 차집합
 
+```javascript
+let st = new Set('abcdeee')
 
+console.log(st)
+console.log(st.size)
+```
+
+<br>
+
+> **Set의 메서드**
+
+```javascript
+// set에 데이터 추가
+st.add('f')
+
+// set의 값을 제거
+st.delete('d')
+
+// set의 값을 확인
+console.log(st.has('e'))
+
+// set의 모든 값을 제거
+st.clear
+```
+
+<br>
+
+### Set을 순회
+
+```javascript
+for(let i of st) {
+  console.log(i)
+}
+
+// 값이 배열인 경우
+let st2 = new Set('abcdeeeeee'.split(''))
+console.log(st2) // Set(5) {'a', 'b', 'c', 'd', 'e'} 출력
+```
+
+<br>
+
+> **문제**
+
+```javascript
+let board = ['이만수', '이만수', '이호준', '홍길동', '홍길동', '김갑동']
+let st = new Set(board)
+// 문제1 : 몇 명이 게시판에 게시물을 썼나요?
+console.log(st.size)
+
+// 문제2 : 각각 몇 개의 게시물을 작성하였나요?
+// 1번 풀이
+for(const i of st) {
+  console.log(i, board.filter(e => e === i).length)
+}
+
+// 2번 풀이 - 순회 돌면서 해당 key의 값을 업데이트 해주는 식. 없으면 0 + 1
+let m = new Map()
+for(const i of st) {
+  m.set(i, (m.get(i) || 0) + 1)
+}
+
+// 3번 풀이
+const result = {};
+for (let person of board) {
+    result[person] = (result[person] ? result[person] : 0) + 1;
+}
+console.log(result);
+```
+
+<br>
+
+> **교집합, 합집합, 차집합**
+
+```javascript
+let a = new Set('abc');
+let b = new Set('cde');
+// 교집합
+let cro = [...a].filter(value => b.has(value)); // 여기서 value는 a, b, c
+
+// 합집합
+let union = new Set([...a].concat(...b));
+// let a = [1, 2, 3]
+// let b = [3, 4, 5]
+// a.concat(...b)
+// a.push(...b)
+// console.log(a)
+
+// 차집합
+let dif = [...a].filter(x => !b.has(x));
+```
+
+<br>
 
 ❗️ 참고! Map과 Set은 IE10이하 환경에서는 지원하지 않는다.
