@@ -16,8 +16,8 @@ m.set('하나', 1)
 
 console.log(m) // 아래 사진 처럼 출력됨.
 ```
+![스크린샷 2022-10-17 오후 4 29 02](https://user-images.githubusercontent.com/58455479/196115112-144f5d18-0f6a-41fa-bb26-007ddbe4e8d6.png)
 
-![스크린샷 2022-10-16 오후 8.12.21](/Users/choisujin/Library/Application Support/typora-user-images/스크린샷 2022-10-16 오후 8.12.21.png)
 
 <br>
 
@@ -72,7 +72,7 @@ m3.size
 
 - 위와 같은 메서드를 기존 Object자료형에서 구현하려면 복잡하다. 아래 사진을 보면 length가 없다.
 
-<img src="/Users/choisujin/Library/Application Support/typora-user-images/스크린샷 2022-10-16 오후 8.36.25.png" alt="스크린샷 2022-10-16 오후 8.36.25" style="zoom:50%;" />
+![스크린샷 2022-10-17 오후 4 30 09](https://user-images.githubusercontent.com/58455479/196115299-343780c7-0b27-409b-9f20-ef88cc0f7a2c.png)
 
 <br>
 
