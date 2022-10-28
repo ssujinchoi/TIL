@@ -50,7 +50,7 @@ function User(name, age, birthday){
     return this
 }
 
-new 함수명(); // 1. 실행하면
+new User(); // 1. 실행하면
 ```
 
 
