@@ -126,6 +126,113 @@ let newList = list.map((item) => {
 })
 
 console.log(newList);
+```
 
+<br>
+
+### 스코프
+
+- 변수의 유효 범위를 말함
+
+```js
+// 1. 블록 스코프 : 변수의 생존가능한 범위한 중괄호안에서 끝나는 것.
+
+// 2. 전역 스코프 : 전역변수
+let val = 1;
+
+// 3. 함수 스코프 : 함수안에서 선언된 변수는 함수 밖에서 접근할 수 없다.
+function test (){
+    let a = 1;
+    let b = 2;
+    return a + b;
+}
+console.log(test());
+
+let a = 20; // 함수안의 a와는 별개의 변수
+console.log(test());
+
+// 함수 밖에서 함수안 변수에 접근할 수 없다. - error
+console.log(b); 
+
+// 함수안에 정의된 변수는 외부에서는 접근할 수 없고, 함수안에서는 어디든 접근이 가능
+// 스코프 아래에서 위로 탐색을 하면서 값이 있는지 확인하는것을 스코프 체이닝이라고 한다.
+const myFunc = function (){
+    g = 10 // 키워드 없이 선언하면 무조건 전역변수가 된다.
+    let a = 1;
+    let b = 2;
+
+    const myFunc2 = function (){
+        let b = 5;
+        let c = 6;
+
+      	// b와 c는 myFunc2에 있으므로 각각 5, 6이고 a는 스코프 체이닝으로 인해 myFunc의 1이 된다.
+        a = a + b + c; 
+        console.log(a); // 12출력
+    }
+
+    myFunc2();
+}
+myFunc();
+```
+
+<br>
+
+### 클로저
+
+- 외부에서 접근할 수 없는 공간을 만드는 테크닉
+
+```js
+const myFunc = function (){
+    // 클로저 공간
+    let a = 1;
+    let b = 2;
+
+    // 클로저 함수 - 클로저 공간에 접근할 수 있는 함수. 
+    const myFunc2 = function (){
+        let b = 5;
+        let c = 6;
+
+        a = a + b + c;
+        console.log(a);
+    }
+		
+    // myFunc()2; 함수를 실행하지 않고 아래와 같이 리턴하여 밖으로 뺀다.
+    return myFunc2; // myFunc2()로 하면 함수가 실행된 결과가 return되므로 ()를 뺀다.
+}
+// innerFunc에는 myFunc2가 들어있다.
+// 함수가 종료되면 함수안에 있는 데이터들은 메모리에서 사라지는데,
+// myFunc2함수 return을 통해 함수를 변수에 저장하여 myFunc2는 살아있다.
+// 참조카운팅 - 참조하고있는 무엇인가 남아있으면 없애지않고 메모리 어딘가에 남겨둔다. 그것이 클로저 공간
+const innerFunc = myFunc();
+
+innerFunc();
+
+// return 키워드를 만남으로서 myFunc는 메모리에서 지워집니다. 그렇다면 이때 myFunc2에서 참조하고 있던 a는 어떻게 될까요?
+// 자바스크립트에서 메모리 관리는 참조 카운팅이라는 방법으로 이루어 집니다. a를 여전히 myFunc2에서 참조하고 있기 때문에 myFunc2의 b는 사라지지만 a는 여전히 남아있습니다.
+```
+
+
+
+> **클로저 사용 예시**
+
+```js
+// 클로져 공간을 만드는 함수입니다.
+function makeClosure() {
+
+    // 여기 선언된 변수들이 클로져(폐쇠된) 공간에 있게된다.
+    const val1 = 100;
+    const val2 = 200;
+
+    // 리턴 키워드를 통해 함수의 변수(val1, val2)를 밖에서 사용할 수 있도록 함수에 담아 반환
+    return {
+        getVal1: function () { return val1 },
+        getVal2: function () { return val2 }
+    }
+}
+
+// 이제 result 변수 안에는 makeClosure 함수안에 있던 val1, val2 값이 참조되어있게 된다. 그리고 여기에 접근하는 방법은 오직 getVal1, getVal2 함수만 가능
+let result = makeClosure();
+console.log(result.getVal1());
+console.log(result.getVal2());
 ```
 
